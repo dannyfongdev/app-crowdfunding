@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --primary-1: hsl(176, 50%, 47%);
+  --primary-2: hsl(176, 72%, 28%);
+  --neutral-1: hsl(0, 0%, 0%);
+  --neutral-2: hsl(0, 0%, 48%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Commissioner", sans-serif;
+}
+
+.hero {
+  height: 300px;
+  background-image: url("../public/images/image-hero-mobile.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    height: 400px;
+    background-image: url("../public/images/image-hero-desktop.jpg");
+  }
 }
