@@ -5,9 +5,17 @@ import Summary from "./components/Summary";
 import Main from "./components/Main";
 import Pledge from "./components/Pledge";
 import Modal from "./components/Modal";
+import PledgeRadio from "./components/PledgeRadio";
 
 function App() {
   const pledgeLevels = [
+    {
+      title: "Pledge with no reward",
+      pledge: "na", // not used
+      description:
+        "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
+      numRemaining: -1, // not used
+    },
     {
       title: "Bamboo Stand",
       pledge: "Pledge $25 or more",
@@ -41,7 +49,8 @@ function App() {
       <Header></Header>
       <Summary></Summary>
       <Main>
-        {pledgeLevels.map((pl) => {
+        {pledgeLevels.filter(pl => pl.numRemaining !== -1) // -1 is for "Pledge with no reward", which does not need to be shown here. It is shown in the modal as an "option"
+          .map((pl) => {
           return (
             <Pledge
               key={pl.title}
@@ -54,7 +63,19 @@ function App() {
           );
         })}
       </Main>
-      <Modal />
+      {pledgeLevels.map((pl) => {
+          return (
+            <PledgeRadio
+              key={pl.title}
+              title={pl.title}
+              pledge={pl.pledge}
+              description={pl.description}
+              numRemaining={pl.numRemaining}
+              onSelectReward={onSelectReward}
+            />
+          );
+        })}
+      { false && <Modal /> }
     </>
   );
 }

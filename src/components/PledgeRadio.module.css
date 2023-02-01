@@ -1,0 +1,72 @@
+.container {
+  max-width: 768px;
+  margin: 0 auto 1rem;
+  padding: 1.4rem;
+  border-radius: 12px;
+  border: 1px solid var(--neutral-2);
+}
+
+.containerDisabled {
+  composes: container;
+  opacity: 50%;
+}
+
+.radioWrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--neutral-1);
+  margin-bottom: 0.4rem;
+}
+
+.pledge {
+  color: var(--primary-1);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 1.3rem;
+}
+
+.remainingWrapper {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+.remaining {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.left {
+  color: var(--neutral-2);
+}
+
+.btn {
+  border-style: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  background-color: var(--primary-1);
+  color: white;
+  font-weight: 500;
+}
+
+.btnDisabled {
+  border-style: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  background-color: var(--neutral-2);
+  color: white;
+  font-weight: 500;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: var(--primary-2);
+}
