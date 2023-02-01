@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Summary from "./components/Summary";
 import Main from "./components/Main";
 import Pledge from "./components/Pledge";
+import Modal from "./components/Modal";
 
 function App() {
   const pledgeLevels = [
@@ -18,7 +19,7 @@ function App() {
       title: "Black Edition Stand",
       pledge: "Pledge $75 or more",
       description:
-        "YYou get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer        member list. Shipping is included.",
+        "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer        member list. Shipping is included.",
       numRemaining: 64,
     },
     {
@@ -53,6 +54,7 @@ function App() {
           );
         })}
       </Main>
+      <Modal />
     </>
   );
 }
