@@ -11,14 +11,20 @@
     position: absolute;
     border-radius: 10px;
     background-color: white;
-    inset: 120px 25px 25px;
+    inset: 120px 25px auto;
     z-index: 20;
     padding: 30px 23px;
 }
 
+.titleWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.4rem;
+}
+
 h2 {
     font-size: 1.2rem;
-    margin-bottom: 1.4rem;
 }
 
 p {

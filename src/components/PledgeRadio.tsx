@@ -6,15 +6,13 @@ interface PledgeRadioProps {
   pledge: string;
   description: string;
   numRemaining: number;
-  onSelectReward: () => void;
 }
 
 export default function PledgeRadio({
   title,
   pledge,
   description,
-  numRemaining,
-  onSelectReward,
+  numRemaining
 }: PledgeRadioProps): JSX.Element {
   return (
     <div

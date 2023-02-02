@@ -6,7 +6,7 @@ interface PledgeProps {
   pledge: string;
   description: string;
   numRemaining: number;
-  onSelectReward: () => void;
+  onSelectReward: (reward: string) => void;
 }
 
 export default function Pledge({
@@ -16,6 +16,10 @@ export default function Pledge({
   numRemaining,
   onSelectReward,
 }: PledgeProps): JSX.Element {
+
+  const onClick = () => {
+    onSelectReward(title);
+  }
   return (
     <div className={numRemaining===0 ? styles.containerDisabled : styles.container}>
       <div className={styles.title}>{title}</div>
@@ -26,7 +30,7 @@ export default function Pledge({
         <div className={styles.left}>left</div>
       </div>
       {numRemaining !== 0 && (
-        <button className={styles.btn} onClick={onSelectReward}>
+        <button className={styles.btn} onClick={onClick}>
           Select Reward
         </button>
       )}

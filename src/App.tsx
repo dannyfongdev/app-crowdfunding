@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import Header from "./components/Header";
 import Summary from "./components/Summary";
@@ -7,7 +7,10 @@ import Pledge from "./components/Pledge";
 import Modal from "./components/Modal";
 import PledgeRadio from "./components/PledgeRadio";
 
-function App() {
+function App(): JSX.Element {
+  const [ showModal, setShowModal ] = useState(false);
+  const [ currPledge, setCurrPledge ] = useState('');
+
   const pledgeLevels = [
     {
       title: "Pledge with no reward",
@@ -39,43 +42,52 @@ function App() {
     },
   ];
 
-  const onSelectReward = () => {
-    console.log("select reward clicked");
+  const onSelectReward = (reward: string) => {
+    console.log("select reward clicked", reward);
+    setShowModal(true);
   };
+
+  const onBackThisProject = () => {
+    setShowModal(true);
+  }
 
   return (
     <>
       <div className="hero"></div>
-      <Header></Header>
+      <Header onBackThisProject={ onBackThisProject }></Header>
       <Summary></Summary>
       <Main>
-        {pledgeLevels.filter(pl => pl.numRemaining !== -1) // -1 is for "Pledge with no reward", which does not need to be shown here. It is shown in the modal as an "option"
+        {pledgeLevels
+          .filter((pl) => pl.numRemaining !== -1) // -1 is for "Pledge with no reward", which does not need to be shown here. It is shown in the modal as an "option"
           .map((pl) => {
-          return (
-            <Pledge
-              key={pl.title}
-              title={pl.title}
-              pledge={pl.pledge}
-              description={pl.description}
-              numRemaining={pl.numRemaining}
-              onSelectReward={onSelectReward}
-            />
-          );
-        })}
+            return (
+              <Pledge
+                key={pl.title}
+                title={pl.title}
+                pledge={pl.pledge}
+                description={pl.description}
+                numRemaining={pl.numRemaining}
+                onSelectReward={onSelectReward}
+              />
+            );
+          })}
       </Main>
-      {pledgeLevels.map((pl) => {
-          return (
-            <PledgeRadio
-              key={pl.title}
-              title={pl.title}
-              pledge={pl.pledge}
-              description={pl.description}
-              numRemaining={pl.numRemaining}
-              onSelectReward={onSelectReward}
-            />
-          );
-        })}
-      { false && <Modal /> }
+
+      { showModal && (
+        <Modal onClose={() => {setShowModal(false)}}>
+          {pledgeLevels.map((pl) => {
+            return (
+              <PledgeRadio
+                key={pl.title}
+                title={pl.title}
+                pledge={pl.pledge}
+                description={pl.description}
+                numRemaining={pl.numRemaining}
+              />
+            );
+          })}
+        </Modal>
+      )}
     </>
   );
 }
