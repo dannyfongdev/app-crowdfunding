@@ -9,7 +9,9 @@ import PledgeRadio from "./components/PledgeRadio";
 
 function App(): JSX.Element {
   const [ showModal, setShowModal ] = useState(false);
-  const [ currPledge, setCurrPledge ] = useState('');
+  const [ currPledgeTitle, setCurrPledgeTitle ] = useState('');
+  const [ totalPledgeAmount, setTotalPledgeAmount ] = useState(89914);
+  const [ totalBackers, setTotalBackers ] = useState(5007);
 
   const pledgeLevels = [
     {
@@ -42,20 +44,29 @@ function App(): JSX.Element {
     },
   ];
 
-  const onSelectReward = (reward: string) => {
-    console.log("select reward clicked", reward);
+  function onSelectReward (title: string)  {
+    setCurrPledgeTitle(title);
     setShowModal(true);
   };
 
-  const onBackThisProject = () => {
+  function onBackThisProject () {
     setShowModal(true);
   }
+
+  function handlePledge (amount: number) {
+    setTotalPledgeAmount(totalPledgeAmount + amount);
+    setTotalBackers(totalBackers + 1);
+    setShowModal(false);
+    setCurrPledgeTitle(''); // reset so that next time modal opens, no radio is selected
+  }
+
+// @todo need to make "number left" at this pledge level dynamic
 
   return (
     <>
       <div className="hero"></div>
       <Header onBackThisProject={ onBackThisProject }></Header>
-      <Summary></Summary>
+      <Summary totalPledgeAmount={totalPledgeAmount} totalBackers={totalBackers}></Summary>
       <Main>
         {pledgeLevels
           .filter((pl) => pl.numRemaining !== -1) // -1 is for "Pledge with no reward", which does not need to be shown here. It is shown in the modal as an "option"
@@ -83,6 +94,9 @@ function App(): JSX.Element {
                 pledge={pl.pledge}
                 description={pl.description}
                 numRemaining={pl.numRemaining}
+                selected={currPledgeTitle==pl.title}
+                onSelect={s => {setCurrPledgeTitle(s)}}
+                onPledge={n => handlePledge(n)}
               />
             );
           })}

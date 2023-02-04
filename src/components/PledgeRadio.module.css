@@ -11,6 +11,14 @@
   opacity: 50%;
 }
 
+.containerSelected {
+  max-width: 768px;
+  margin: 0 auto 1rem;
+  padding: 1.4rem;
+  border-radius: 12px;
+  border: 2px solid var(--primary-1);
+}
+
 .radioWrapper {
   display: flex;
   justify-content: left;
@@ -55,6 +63,7 @@
   background-color: var(--primary-1);
   color: white;
   font-weight: 500;
+  outline-color: var(--neutral-2);
 }
 
 .btnDisabled {
@@ -69,4 +78,50 @@
 .btn:hover {
   cursor: pointer;
   background: var(--primary-2);
+}
+
+/* the Make Pledge div only shows when this pledge has been selected */
+.showMakePledge {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.hideMakePledge {
+  display: none;
+}
+
+.makePledgeLine {
+  /* position: absolute; */
+  border-bottom: 1px solid var(--neutral-2);
+  /* width: calc(100% + 46px);
+  left: -23px; */
+}
+
+.showMakePledge p {
+  margin: 30px auto 25px;
+}
+
+.amountWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.amountWrapper input {
+  width: 6rem;
+  border-radius: 50px;
+  border-color: var(--neutral-2);
+  outline-color: var(--neutral-2);
+  padding: 1rem;
+  text-align: center;
+}
+
+.errorMsg {
+  color: red;
+  display: block;
+}
+
+.hideErrorMsg {
+  display: none;
 }

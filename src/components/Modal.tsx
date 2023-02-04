@@ -7,12 +7,12 @@ interface ModalProps {
 
 export default function Modal({ children, onClose }: ModalProps): JSX.Element {
   const handleClick = (target: HTMLElement) => {
-    console.log(target.classList.value);
-    // if div.overlay was clicked, then close the modal
+    // console.log(target.classList.value);
+    // if overlay (outside the white box) was clicked, then close the modal
     if (target.classList.value.includes("overlay")) {
       onClose();
     }
-    // if img.close-modal was clicked, then close the modal
+    // if close-modal icon was clicked, then close the modal
     if (target.classList.value.includes("close-modal")) {
       onClose();
     }
