@@ -50,6 +50,7 @@ function App(): JSX.Element {
   };
 
   function onBackThisProject () {
+    setCurrPledgeTitle(''); // reset so that next time modal opens, no radio is selected
     setShowModal(true);
   }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import styles from "./PledgeRadio.module.css";
 
@@ -22,7 +22,16 @@ export default function PledgeRadio({
   onSelect,
   onPledge,
 }: PledgeRadioProps): JSX.Element {
-  const [ pledgeAmount, setPledgeAmount ] = useState(0);
+  const [pledgeAmount, setPledgeAmount] = useState(0);
+  const ref = useRef<HTMLInputElement>(null);
+
+  function focusInput() {
+    if (ref.current != null) {
+      ref.current.focus();
+    } else {
+      console.log("ref is null");
+    }
+  }
 
   function handleChange() {
     onSelect(title);
@@ -47,9 +56,16 @@ export default function PledgeRadio({
   function makePledgeClass() {
     if (selected) {
       return styles.showMakePledge;
+    } else {
+      return styles.hideMakePledge;
     }
-    return styles.hideMakePledge;
   }
+
+  // setFocus to input when selected pledge level changes
+  useEffect (() => {
+    focusInput();
+  },[selected]);
+
 
   return (
     <div className={outerDivClass()}>
@@ -81,10 +97,26 @@ export default function PledgeRadio({
         <div className={styles.makePledgeLine}></div>
         <p>Enter your pledge</p>
         <div className={styles.amountWrapper}>
-          <input type="text" name="amount" onChange={e => {setPledgeAmount(parseFloat(e.target.value))}} autoFocus/>
-          <button className={styles.btn} onClick={handlePledge}>Continue</button>
+          <input
+            type="text"
+            name="amount"
+            onChange={(e) => {
+              setPledgeAmount(parseFloat(e.target.value));
+            }}
+            // use ref to "autofocus"
+            ref={ref}
+          />
+          <button className={styles.btn} onClick={handlePledge}>
+            Continue
+          </button>
         </div>
-        <div className={isNaN(pledgeAmount) ? styles.errorMsg : styles.hideErrorMsg}>Please enter a valid number.</div>
+        <div
+          className={
+            isNaN(pledgeAmount) ? styles.errorMsg : styles.hideErrorMsg
+          }
+        >
+          Please enter a valid number.
+        </div>
       </div>
     </div>
   );

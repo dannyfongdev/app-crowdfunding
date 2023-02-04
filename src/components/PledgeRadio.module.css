@@ -7,15 +7,13 @@
 }
 
 .containerDisabled {
-  composes: container;
+  /* composes is a CSS modules feature, like inheriting properties from another class; doesn't work in plain CSS */
+  composes: container; 
   opacity: 50%;
 }
 
 .containerSelected {
-  max-width: 768px;
-  margin: 0 auto 1rem;
-  padding: 1.4rem;
-  border-radius: 12px;
+  composes: container;
   border: 2px solid var(--primary-1);
 }
 

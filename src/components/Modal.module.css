@@ -23,11 +23,6 @@
     margin-bottom: 1.4rem;
 }
 
-h2 {
+.titleWrapper h2 {
     font-size: 1.2rem;
-}
-
-p {
-    font-size: .9rem;
-    line-height: 1.7;
 }
