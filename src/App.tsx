@@ -8,12 +8,7 @@ import Modal from "./components/Modal";
 import PledgeRadio from "./components/PledgeRadio";
 
 function App(): JSX.Element {
-  const [ showModal, setShowModal ] = useState(false);
-  const [ currPledgeTitle, setCurrPledgeTitle ] = useState('');
-  const [ totalPledgeAmount, setTotalPledgeAmount ] = useState(89914);
-  const [ totalBackers, setTotalBackers ] = useState(5007);
-
-  const pledgeLevels = [
+  const initialPledgeLevels = [
     {
       title: "Pledge with no reward",
       pledge: "na", // not used
@@ -44,30 +39,60 @@ function App(): JSX.Element {
     },
   ];
 
-  function onSelectReward (title: string)  {
+  const [showModal, setShowModal] = useState(false);
+  const [currPledgeTitle, setCurrPledgeTitle] = useState("");
+  const [totalPledgeAmount, setTotalPledgeAmount] = useState(89914);
+  const [totalBackers, setTotalBackers] = useState(5007);
+  const [pledgeLevels, setPledgeLevels] = useState(initialPledgeLevels);
+
+  function updateNumRemaining() {
+    // need to make a new array; do not mutate state array
+    // find element to clone and edit
+    const elementCopy = structuredClone(pledgeLevels.filter(pl => pl.title === currPledgeTitle));
+    if (elementCopy[0].numRemaining > 0) { // don't subtract from 'pledge with no reward'
+      elementCopy[0].numRemaining -= 1;
+      // find index of element to cut
+      const elementIndex = pledgeLevels.findIndex(pl => pl.title === currPledgeTitle)
+  
+      // make new array with head + edited element + tail
+      const newArray = pledgeLevels.slice(0, elementIndex)
+        .concat(elementCopy)
+        .concat(pledgeLevels.slice(elementIndex+1));
+      
+      // update state
+      console.log(pledgeLevels);
+      setPledgeLevels(newArray);
+    }
+  }
+
+  function onSelectReward(title: string) {
     setCurrPledgeTitle(title);
     setShowModal(true);
-  };
+  }
 
-  function onBackThisProject () {
-    setCurrPledgeTitle(''); // reset so that next time modal opens, no radio is selected
+  function onBackThisProject() {
+    setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
     setShowModal(true);
   }
 
-  function handlePledge (amount: number) {
+  function handlePledge(amount: number) {
     setTotalPledgeAmount(totalPledgeAmount + amount);
     setTotalBackers(totalBackers + 1);
+    updateNumRemaining();
     setShowModal(false);
-    setCurrPledgeTitle(''); // reset so that next time modal opens, no radio is selected
+    setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
   }
 
-// @todo need to make "number left" at this pledge level dynamic
+  // @todo need to make "number left" at this pledge level dynamic
 
   return (
     <>
       <div className="hero"></div>
-      <Header onBackThisProject={ onBackThisProject }></Header>
-      <Summary totalPledgeAmount={totalPledgeAmount} totalBackers={totalBackers}></Summary>
+      <Header onBackThisProject={onBackThisProject}></Header>
+      <Summary
+        totalPledgeAmount={totalPledgeAmount}
+        totalBackers={totalBackers}
+      ></Summary>
       <Main>
         {pledgeLevels
           .filter((pl) => pl.numRemaining !== -1) // -1 is for "Pledge with no reward", which does not need to be shown here. It is shown in the modal as an "option"
@@ -85,8 +110,12 @@ function App(): JSX.Element {
           })}
       </Main>
 
-      { showModal && (
-        <Modal onClose={() => {setShowModal(false)}}>
+      {showModal && (
+        <Modal
+          onClose={() => {
+            setShowModal(false);
+          }}
+        >
           {pledgeLevels.map((pl) => {
             return (
               <PledgeRadio
@@ -95,9 +124,11 @@ function App(): JSX.Element {
                 pledge={pl.pledge}
                 description={pl.description}
                 numRemaining={pl.numRemaining}
-                selected={currPledgeTitle==pl.title}
-                onSelect={s => {setCurrPledgeTitle(s)}}
-                onPledge={n => handlePledge(n)}
+                selected={currPledgeTitle == pl.title}
+                onSelect={(s) => {
+                  setCurrPledgeTitle(s);
+                }}
+                onPledge={(n) => handlePledge(n)}
               />
             );
           })}
