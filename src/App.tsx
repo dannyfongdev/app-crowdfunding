@@ -83,8 +83,6 @@ function App(): JSX.Element {
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
   }
 
-  // @todo need to make "number left" at this pledge level dynamic
-
   return (
     <>
       <div className="hero"></div>
