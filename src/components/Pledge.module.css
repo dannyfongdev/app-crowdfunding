@@ -3,12 +3,17 @@
   margin: 0 auto 1rem;
   padding: 1.4rem;
   border-radius: 12px;
-  border: 1px solid var(--neutral-2);
+  border: 1px solid var(--neutral-3);
 }
 
 .containerDisabled {
     composes: container;
     opacity: 50%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
@@ -62,4 +67,12 @@
 .btn:hover {
     cursor: pointer;
     background: var(--primary-2);
+}
+
+@media (min-width: 768px) {
+    .flex {
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+    }
 }

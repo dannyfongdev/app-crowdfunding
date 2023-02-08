@@ -3,6 +3,7 @@
   --primary-2: hsl(176, 72%, 28%);
   --neutral-1: hsl(0, 0%, 0%);
   --neutral-2: hsl(0, 0%, 48%);
+  --neutral-3: hsl(0, 0%, 90%);
 }
 
 * {

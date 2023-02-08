@@ -66,6 +66,7 @@ export default function PledgeRadio({
     focusInput();
   },[selected]);
 
+// @todo radio alignment, move numRemaining to top right on medium screens
 
   return (
     <div className={outerDivClass()}>
