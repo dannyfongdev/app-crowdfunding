@@ -4,6 +4,8 @@ interface HeaderProps {
   onBackThisProject: () => void;
 }
 
+// @todo bookmark hover, select
+
 export default function Header({ onBackThisProject }: HeaderProps): JSX.Element {
   return (
     <div className={styles.container}>
