@@ -66,7 +66,8 @@ export default function PledgeRadio({
     focusInput();
   },[selected]);
 
-// @todo radio alignment, move numRemaining to top right on medium screens
+// @todo radio border is too dark
+// @todo default pledge amount when selected
 
   return (
     <div className={outerDivClass()}>

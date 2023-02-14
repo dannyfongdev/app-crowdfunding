@@ -83,6 +83,9 @@ function App(): JSX.Element {
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
   }
 
+  // @todo mobile, desktop menu
+  // @todo modal-complete
+
   return (
     <>
       <div className="hero"></div>
