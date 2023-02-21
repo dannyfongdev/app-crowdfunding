@@ -19,6 +19,11 @@
     margin-top: 7rem;
 }
 
+.modalNarrow {
+    composes: modal;
+    max-width: 22rem;
+}
+
 .titleWrapper {
     display: flex;
     justify-content: space-between;

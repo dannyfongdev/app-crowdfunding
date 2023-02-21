@@ -6,6 +6,7 @@ import Main from "./components/Main";
 import Pledge from "./components/Pledge";
 import Modal from "./components/Modal";
 import PledgeRadio from "./components/PledgeRadio";
+import ThankYou from "./components/ThankYou";
 
 function App(): JSX.Element {
   const initialPledgeLevels = [
@@ -48,21 +49,28 @@ function App(): JSX.Element {
   const [totalPledgeAmount, setTotalPledgeAmount] = useState(89914);
   const [totalBackers, setTotalBackers] = useState(5007);
   const [pledgeLevels, setPledgeLevels] = useState(initialPledgeLevels);
+  const [showThankModal, setShowThankModal] = useState(false);
 
   function updateNumRemaining() {
     // need to make a new array; do not mutate state array
     // find element to clone and edit
-    const elementCopy = structuredClone(pledgeLevels.filter(pl => pl.title === currPledgeTitle));
-    if (elementCopy[0].numRemaining > 0) { // don't subtract from 'pledge with no reward'
+    const elementCopy = structuredClone(
+      pledgeLevels.filter((pl) => pl.title === currPledgeTitle)
+    );
+    if (elementCopy[0].numRemaining > 0) {
+      // don't subtract from 'pledge with no reward'
       elementCopy[0].numRemaining -= 1;
       // find index of element to cut
-      const elementIndex = pledgeLevels.findIndex(pl => pl.title === currPledgeTitle)
-  
+      const elementIndex = pledgeLevels.findIndex(
+        (pl) => pl.title === currPledgeTitle
+      );
+
       // make new array with head + edited element + tail
-      const newArray = pledgeLevels.slice(0, elementIndex)
+      const newArray = pledgeLevels
+        .slice(0, elementIndex)
         .concat(elementCopy)
-        .concat(pledgeLevels.slice(elementIndex+1));
-      
+        .concat(pledgeLevels.slice(elementIndex + 1));
+
       // update state
       console.log(pledgeLevels);
       setPledgeLevels(newArray);
@@ -85,11 +93,11 @@ function App(): JSX.Element {
     updateNumRemaining();
     setShowModal(false);
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
+    setShowThankModal(true); // show thank you modal since pledge was made
   }
 
   // @todo margin/padding issue with modal
   // @todo modal completed page
-
 
   return (
     <>
@@ -122,8 +130,12 @@ function App(): JSX.Element {
             setShowModal(false);
           }}
         >
+          <p>
+            Want to support us in bringing Mastercraft Bamboo Monitor
+            Riser out in the world?
+          </p>
           {pledgeLevels.map((pl) => {
-            return (
+            return (                
               <PledgeRadio
                 key={pl.title}
                 title={pl.title}
@@ -135,10 +147,25 @@ function App(): JSX.Element {
                   setCurrPledgeTitle(s);
                 }}
                 onPledge={(n) => handlePledge(n)}
-                minPledge = {pl.minPledge}
+                minPledge={pl.minPledge}
               />
             );
           })}
+        </Modal>
+      )}
+      {showThankModal && (
+        <Modal
+          onClose={() => {
+            setShowThankModal(false);
+          }}
+          showTitleBar={false}
+          narrow={true}
+        >
+          <ThankYou
+            onClose={() => {
+              setShowThankModal(false);
+            }}
+          />
         </Modal>
       )}
     </>
