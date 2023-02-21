@@ -5,15 +5,19 @@ interface HeaderProps {
   onBackThisProject: () => void;
 }
 
-// @todo bookmark hover effect
 // @todo bookmarkLabel text alignment
 
 
 export default function Header({ onBackThisProject }: HeaderProps): JSX.Element {
   const [bookmarked, setBookmarked] = useState(false)
+  const [bookmarkHover, setBookmarkHover] = useState(false)
 
   const handleBookmarkClick = () => {
     setBookmarked(!bookmarked);
+  }
+
+  const isHighlighted = () => {
+    return (bookmarked || bookmarkHover);
   }
 
   return (
@@ -25,9 +29,9 @@ export default function Header({ onBackThisProject }: HeaderProps): JSX.Element 
       </p>
       <div className={styles.actions}>
         <button className={styles.btn} onClick={onBackThisProject}>Back this project</button>
-        <div className={styles.bookmarkWrapper} onClick={handleBookmarkClick}>
-          <img className={styles.bookmarkIcon} src={!bookmarked ? "./images/icon-bookmark.svg" : "./images/icon-bookmarked.svg"} alt="bookmark icon"/>
-          <span className={styles.bookmarkLabel}>{bookmarked ? 'Bookmarked' : 'Bookmark'}</span>
+        <div className={styles.bookmarkWrapper} onClick={handleBookmarkClick} onMouseEnter={()=>{setBookmarkHover(true)}} onMouseLeave={()=>{setBookmarkHover(false)}}>
+          <img className={styles.bookmarkIcon} src={isHighlighted() ? "./images/icon-bookmarked.svg" : "./images/icon-bookmark.svg"} alt="bookmark icon"/>
+          <span className={isHighlighted() ? styles.bookmarkLabelGreen : styles.bookmarkLabel}>{bookmarked ? 'Bookmarked' : 'Bookmark'}</span>
         </div>
         
       </div>

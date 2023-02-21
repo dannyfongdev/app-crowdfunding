@@ -63,6 +63,13 @@
 .bookmarkLabel {
     display: none;
     color: var(--neutral-2);
+    font-weight: bold;
+}
+
+.bookmarkLabelGreen {
+    display: none;
+    color: var(--primary-2);
+    font-weight: bold;
 }
 
 @media (min-width: 768px) {
@@ -77,6 +84,10 @@
     }
 
     .bookmarkLabel {
+        display: block;
+    }
+
+    .bookmarkLabelGreen {
         display: block;
     }
 }
