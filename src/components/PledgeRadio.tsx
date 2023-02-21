@@ -11,6 +11,7 @@ interface PledgeRadioProps {
   selected: boolean;
   onSelect: (s: string) => void;
   onPledge: (n: number) => void;
+  minPledge: number;
 }
 
 export default function PledgeRadio({
@@ -21,6 +22,7 @@ export default function PledgeRadio({
   selected,
   onSelect,
   onPledge,
+  minPledge,
 }: PledgeRadioProps): JSX.Element {
   const [pledgeAmount, setPledgeAmount] = useState(0);
   const ref = useRef<HTMLInputElement>(null);
@@ -38,7 +40,7 @@ export default function PledgeRadio({
   }
 
   function handlePledge() {
-    if (pledgeAmount > 0) {
+    if (pledgeAmount > 0 && pledgeAmount >= minPledge) {
       onPledge(pledgeAmount);
     }
   }
@@ -66,8 +68,6 @@ export default function PledgeRadio({
     focusInput();
   },[selected]);
 
-// @todo radio border is too dark
-// @todo default pledge amount when selected
 
   return (
     <div className={outerDivClass()}>
@@ -76,7 +76,7 @@ export default function PledgeRadio({
           <input
             type="radio"
             name="pledgeLevel"
-            disabled={numRemaining == 0}
+            disabled={numRemaining === 0}
             onChange={handleChange}
             checked={selected}
           ></input>
@@ -118,6 +118,13 @@ export default function PledgeRadio({
           }
         >
           Please enter a valid number.
+        </div>
+        <div
+          className={
+            pledgeAmount > 0 && pledgeAmount < minPledge ? styles.errorMsg : styles.hideErrorMsg
+          }
+        >
+          Your pledge is below the minimum for this reward.
         </div>
       </div>
     </div>

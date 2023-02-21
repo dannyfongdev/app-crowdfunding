@@ -15,6 +15,7 @@ function App(): JSX.Element {
       description:
         "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
       numRemaining: -1, // not used
+      minPledge: 0,
     },
     {
       title: "Bamboo Stand",
@@ -22,6 +23,7 @@ function App(): JSX.Element {
       description:
         "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
       numRemaining: 101,
+      minPledge: 25,
     },
     {
       title: "Black Edition Stand",
@@ -29,6 +31,7 @@ function App(): JSX.Element {
       description:
         "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer        member list. Shipping is included.",
       numRemaining: 64,
+      minPledge: 75,
     },
     {
       title: "Mohogany Special Edition",
@@ -36,6 +39,7 @@ function App(): JSX.Element {
       description:
         "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
       numRemaining: 0,
+      minPledge: 200,
     },
   ];
 
@@ -83,8 +87,9 @@ function App(): JSX.Element {
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
   }
 
-  // @todo mobile, desktop menu
-  // @todo modal-complete
+  // @todo margin/padding issue with modal
+  // @todo modal completed page
+
 
   return (
     <>
@@ -125,11 +130,12 @@ function App(): JSX.Element {
                 pledge={pl.pledge}
                 description={pl.description}
                 numRemaining={pl.numRemaining}
-                selected={currPledgeTitle == pl.title}
+                selected={currPledgeTitle === pl.title}
                 onSelect={(s) => {
                   setCurrPledgeTitle(s);
                 }}
                 onPledge={(n) => handlePledge(n)}
+                minPledge = {pl.minPledge}
               />
             );
           })}
