@@ -95,9 +95,7 @@ function App(): JSX.Element {
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
     setShowThankModal(true); // show thank you modal since pledge was made
   }
-
-  // @todo margin/padding issue with modal
-  // @todo modal completed page
+  
 
   return (
     <>
