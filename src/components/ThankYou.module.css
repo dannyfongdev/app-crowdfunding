@@ -2,15 +2,15 @@
   text-align: center;
 }
 
-img {
+.container img {
   margin-bottom: 1.3rem;
 }
 
-h1 {
+.container h1 {
   font-size: 1.2rem;
 }
 
-p {
+.container p {
   width: 18rem;
   margin: 2rem auto;
   line-height: 1.6;
