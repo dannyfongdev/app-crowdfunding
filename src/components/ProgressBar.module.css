@@ -1,0 +1,14 @@
+.outerContainer {
+  background-color: var(--neutral-3);
+  height: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+  border-radius: 25px;
+  grid-column: 1 / 6;
+}
+
+.innerBar {
+  background-color: var(--primary-1);
+  height: 1rem;
+  border-radius: 25px;
+}
