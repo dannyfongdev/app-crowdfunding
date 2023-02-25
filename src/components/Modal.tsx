@@ -8,6 +8,8 @@ interface ModalProps {
   narrow?: boolean;
 }
 
+// @todo finetune modal css
+
 export default function Modal({ children, onClose, title="Back this project", showTitleBar=true, narrow=false }: ModalProps): JSX.Element {
   const handleClick = (target: HTMLElement) => {
     // console.log(target.classList.value);

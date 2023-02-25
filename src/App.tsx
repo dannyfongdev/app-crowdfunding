@@ -8,6 +8,8 @@ import Modal from "./components/Modal";
 import PledgeRadio from "./components/PledgeRadio";
 import ThankYou from "./components/ThankYou";
 
+// @todo menu bar
+
 function App(): JSX.Element {
   const initialPledgeLevels = [
     {

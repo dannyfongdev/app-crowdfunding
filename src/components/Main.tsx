@@ -6,6 +6,7 @@ interface MainProps {
 
 export default function Main({ children }: MainProps): JSX.Element {
   return (
+    <main>
     <div className={styles.container}>
       <div className={styles.title}>About this project</div>
       <p>
@@ -23,5 +24,6 @@ export default function Main({ children }: MainProps): JSX.Element {
       </p>
       {children}
     </div>
+    </main>
   );
 }
