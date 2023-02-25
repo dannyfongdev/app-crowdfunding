@@ -10,42 +10,49 @@ import ThankYou from "./components/ThankYou";
 
 // @todo menu bar
 
-function App(): JSX.Element {
-  const initialPledgeLevels = [
-    {
-      title: "Pledge with no reward",
-      pledge: "na", // not used
-      description:
-        "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
-      numRemaining: -1, // not used
-      minPledge: 0,
-    },
-    {
-      title: "Bamboo Stand",
-      pledge: "Pledge $25 or more",
-      description:
-        "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
-      numRemaining: 101,
-      minPledge: 25,
-    },
-    {
-      title: "Black Edition Stand",
-      pledge: "Pledge $75 or more",
-      description:
-        "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer        member list. Shipping is included.",
-      numRemaining: 64,
-      minPledge: 75,
-    },
-    {
-      title: "Mohogany Special Edition",
-      pledge: "Pledge $200 or more",
-      description:
-        "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-      numRemaining: 0,
-      minPledge: 200,
-    },
-  ];
+const initialPledgeLevels = [
+  {
+    title: "Pledge with no reward",
+    pledge: "na", // not used
+    description:
+      "Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.",
+    numRemaining: -1, // not used
+    minPledge: 0,
+  },
+  {
+    title: "Bamboo Stand",
+    pledge: "Pledge $25 or more",
+    description:
+      "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
+    numRemaining: 101,
+    minPledge: 25,
+  },
+  {
+    title: "Black Edition Stand",
+    pledge: "Pledge $75 or more",
+    description:
+      "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer        member list. Shipping is included.",
+    numRemaining: 64,
+    minPledge: 75,
+  },
+  {
+    title: "Mohogany Special Edition",
+    pledge: "Pledge $200 or more",
+    description:
+      "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
+    numRemaining: 0,
+    minPledge: 200,
+  },
+];
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // for smoothly scrolling
+  });
+};
+
+function App(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   const [currPledgeTitle, setCurrPledgeTitle] = useState("");
   const [totalPledgeAmount, setTotalPledgeAmount] = useState(89914);
@@ -86,14 +93,8 @@ function App(): JSX.Element {
   function onBackThisProject() {
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
     setShowModal(true);
+    scrollToTop();
   }
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // for smoothly scrolling
-    });
-  };
 
   function handlePledge(amount: number) {
     setTotalPledgeAmount(totalPledgeAmount + amount);

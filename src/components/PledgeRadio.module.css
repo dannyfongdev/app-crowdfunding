@@ -1,8 +1,8 @@
 .container {
   position: relative;
   max-width: 768px;
-  margin: 0 auto 1rem;
-  padding: 1.4rem;
+  margin: 0 auto 1.6rem;
+  padding: 2rem 1.8rem;
   border-radius: 12px;
   border: 1px solid var(--neutral-3);
 }
@@ -11,6 +11,10 @@
   /* composes is a CSS modules feature, like inheriting properties from another class; doesn't work in plain CSS */
   composes: container; 
   opacity: 50%;
+}
+
+.container p {
+  margin-bottom: 0;
 }
 
 .containerSelected {
@@ -28,13 +32,16 @@
 .radioWrapper label {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   cursor: pointer;
 }
 
 .radioWrapper label input[type=radio]{
   transform: scale(1.6);
+  accent-color: var(--primary-1);
+  opacity: 80%;
 }
+
 
 .radioWrapper label > div {
   display: flex;
@@ -60,13 +67,14 @@
 
 .remainingWrapper {
   display: flex;
+  align-items: center;
   gap: 0.6rem;
   align-items: center;
-  margin-bottom: 1.6rem;
+  margin-top: 1.5rem;
 }
 
 .remaining {
-  font-size: 2rem;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
@@ -111,13 +119,18 @@
 
 .makePledgeLine {
   /* position: absolute; */
-  border-bottom: 1px solid var(--neutral-2);
+  height: 2rem;
+  border-bottom: 1px solid var(--neutral-3);
   /* width: calc(100% + 46px);
   left: -23px; */
 }
 
 .showMakePledge p {
   margin: 30px auto 25px;
+}
+
+.pledgeWrapper {
+  display: block;
 }
 
 .amountWrapper {
@@ -127,10 +140,11 @@
 }
 
 .amountWrapper input {
-  width: 6rem;
-  border-radius: 50px;
-  border-color: var(--neutral-2);
-  outline-color: var(--neutral-2);
+  /* width: 6rem; */
+  /* border-radius: 25px; */
+  outline: none;
+  /* border-color: var(--neutral-2); */
+  /* outline-color: var(--neutral-2);  */
   padding: 1rem;
   text-align: center;
   font-weight: bold;
@@ -140,6 +154,12 @@
 .inputWrapper {
   position: relative;
 }
+
+.inputWrapper input[type=text] {
+  width: 6rem;
+  border-radius: 25px;
+  border: 1px solid var(--neutral-5);
+} 
 
 .dollarIcon {
   position: absolute;
@@ -161,6 +181,7 @@
 }
 
 @media (min-width: 768px) {
+
   .radioWrapper label > div {
     flex-direction: row;
     gap: 1rem;
@@ -170,5 +191,18 @@
     position: absolute;
     right: 1.5rem;
     top: 0.8rem;
+  }
+
+  .makePledgeLine {
+    margin-bottom: 1rem;
+  }
+
+  .pledgeWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    padding-bottom: 1rem;
   }
 }

@@ -67,7 +67,7 @@ export default function PledgeRadio({
   useEffect(() => {
     setPledgeAmount(minPledge);
     focusInput();
-  }, [selected]);
+  }, [selected, minPledge]);
 
   return (
     <div className={outerDivClass()}>
@@ -97,7 +97,9 @@ export default function PledgeRadio({
 
       <div className={makePledgeClass()}>
         <div className={styles.makePledgeLine}></div>
+        <div className={styles.pledgeWrapper}>
         <p>Enter your pledge</p>
+        <div>
         <div className={styles.amountWrapper}>
           <div className={styles.inputWrapper}>
             <input
@@ -132,6 +134,8 @@ export default function PledgeRadio({
           }
         >
           Your pledge is below the minimum for this reward.
+        </div>
+        </div>
         </div>
       </div>
     </div>

@@ -5,9 +5,6 @@ interface HeaderProps {
   onBackThisProject: () => void;
 }
 
-// @todo clicking bookmark should change size of other button
-
-
 export default function Header({ onBackThisProject }: HeaderProps): JSX.Element {
   const [bookmarked, setBookmarked] = useState(false)
   const [bookmarkHover, setBookmarkHover] = useState(false)

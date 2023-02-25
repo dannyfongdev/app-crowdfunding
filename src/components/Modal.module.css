@@ -19,9 +19,22 @@
     margin: 7rem 1rem;
 }
 
+
+.closeModal {
+    position: absolute;
+    right: 1.1rem;
+    top: 1.3rem;
+}
+
+
 .modalNarrow {
     composes: modal;
     max-width: 22rem;
+}
+
+.modal p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
 .titleWrapper {
@@ -32,7 +45,7 @@
 }
 
 .titleWrapper h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -41,5 +54,10 @@
         margin: 7rem auto;
         left: 0;
         right: 0;
+        padding: 3rem;
+    }
+
+    .modal p {
+        font-size: 1rem;
     }
 }

@@ -91,7 +91,7 @@
 
     .bookmarkWrapper {
         width: 190px;
-        padding: 0 25px 0 65px;
+        padding: 0 25px 0 73px;
         text-align: center;
     }
 
@@ -104,6 +104,10 @@
     }
 
     .btn {
-        margin-right: 240px;
+        width: 200px;
+    }
+
+    .actions {
+        justify-content: space-between;
     }
 }
