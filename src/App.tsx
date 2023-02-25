@@ -72,7 +72,6 @@ function App(): JSX.Element {
         .concat(pledgeLevels.slice(elementIndex + 1));
 
       // update state
-      console.log(pledgeLevels);
       setPledgeLevels(newArray);
     }
   }
@@ -87,6 +86,13 @@ function App(): JSX.Element {
     setShowModal(true);
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // for smoothly scrolling
+    });
+  };
+
   function handlePledge(amount: number) {
     setTotalPledgeAmount(totalPledgeAmount + amount);
     setTotalBackers(totalBackers + 1);
@@ -94,6 +100,7 @@ function App(): JSX.Element {
     setShowModal(false);
     setCurrPledgeTitle(""); // reset so that next time modal opens, no radio is selected
     setShowThankModal(true); // show thank you modal since pledge was made
+    scrollToTop(); // scroll to top to show thank You message
   }
   
 

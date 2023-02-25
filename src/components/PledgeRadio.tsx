@@ -63,11 +63,11 @@ export default function PledgeRadio({
     }
   }
 
-  // setFocus to input when selected pledge level changes
-  useEffect (() => {
+  // setFocus to input, set default pledge value when selected pledge level changes
+  useEffect(() => {
+    setPledgeAmount(minPledge);
     focusInput();
-  },[selected]);
-
+  }, [selected]);
 
   return (
     <div className={outerDivClass()}>
@@ -99,15 +99,20 @@ export default function PledgeRadio({
         <div className={styles.makePledgeLine}></div>
         <p>Enter your pledge</p>
         <div className={styles.amountWrapper}>
-          <input
-            type="text"
-            name="amount"
-            onChange={(e) => {
-              setPledgeAmount(parseFloat(e.target.value));
-            }}
-            // use ref to "autofocus"
-            ref={ref}
-          />
+          <div className={styles.inputWrapper}>
+            <input
+              type="text"
+              name="amount"
+              value={pledgeAmount ? pledgeAmount : ""}
+              // ternary operator otherwise will show "NaN"
+              onChange={(e) => {
+                setPledgeAmount(parseFloat(e.target.value));
+              }}
+              // use ref to "autofocus"
+              ref={ref}
+            />
+            <span className={styles.dollarIcon}>$</span>
+          </div>
           <button className={styles.btn} onClick={handlePledge}>
             Continue
           </button>
@@ -121,7 +126,9 @@ export default function PledgeRadio({
         </div>
         <div
           className={
-            pledgeAmount > 0 && pledgeAmount < minPledge ? styles.errorMsg : styles.hideErrorMsg
+            pledgeAmount > 0 && pledgeAmount < minPledge
+              ? styles.errorMsg
+              : styles.hideErrorMsg
           }
         >
           Your pledge is below the minimum for this reward.

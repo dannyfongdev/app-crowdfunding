@@ -5,8 +5,6 @@ interface HeaderProps {
   onBackThisProject: () => void;
 }
 
-// @todo bookmarkLabel text alignment
-
 
 export default function Header({ onBackThisProject }: HeaderProps): JSX.Element {
   const [bookmarked, setBookmarked] = useState(false)

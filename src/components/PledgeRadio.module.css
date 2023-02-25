@@ -133,6 +133,20 @@
   outline-color: var(--neutral-2);
   padding: 1rem;
   text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.dollarIcon {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--neutral-3);
+  font-weight: bold;
 }
 
 .errorMsg {

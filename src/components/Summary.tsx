@@ -6,8 +6,6 @@ interface SummaryProps {
   totalBackers: number;
 }
 
-// @todo progress bar
-
 export default function Summary({
   totalPledgeAmount,
   totalBackers,
