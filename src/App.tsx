@@ -7,6 +7,7 @@ import Pledge from "./components/Pledge";
 import Modal from "./components/Modal";
 import PledgeRadio from "./components/PledgeRadio";
 import ThankYou from "./components/ThankYou";
+import NavBar from "./components/NavBar"
 
 // @todo menu bar
 
@@ -109,7 +110,9 @@ function App(): JSX.Element {
 
   return (
     <>
-      <div className="hero"></div>
+      <div className="hero">
+        <NavBar></NavBar>
+      </div>
       <Header onBackThisProject={onBackThisProject}></Header>
       <Summary
         totalPledgeAmount={totalPledgeAmount}
