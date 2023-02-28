@@ -54,12 +54,23 @@
   z-index: 20;
 }
 
+.hamburger {
+  position: fixed;
+  right: 25px;
+  top: 30px;
+  z-index: 20;
+}
+
 @media (min-width: 768px) {
   .overlay {
     display: none;
   }
 
   .closeIcon {
+    display: none;
+  }
+
+  .hamburger {
     display: none;
   }
 
