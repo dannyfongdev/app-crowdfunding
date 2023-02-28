@@ -5,10 +5,8 @@ export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
-  /*
-    Need to know isMobile width because desktop version of menu should be shown if not mobile view
-    and close icon should not be shown
-  */
+  // Need to know isMobile width because desktop version of menu should be shown if not mobile view
+
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
